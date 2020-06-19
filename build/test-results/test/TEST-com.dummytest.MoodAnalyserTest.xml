@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.dummytest.MoodAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-19T19:14:21" hostname="CONSANGUINITY" time="0.002">
+<testsuite name="com.dummytest.MoodAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-19T21:57:19" hostname="CONSANGUINITY" time="0.005">
   <properties/>
-  <testcase name="givenMood_WhenNull_ShouldReturnHappy" classname="com.dummytest.MoodAnalyserTest" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="givenMood_WhenEMPTY_ShouldTHROWEXCEPTION" classname="com.dummytest.MoodAnalyserTest" time="0.005"/>
+  <system-out><![CDATA[INVALID INPUT : EMPTY MOOD]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
