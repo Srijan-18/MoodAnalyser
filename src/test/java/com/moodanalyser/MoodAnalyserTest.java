@@ -1,12 +1,19 @@
-package com.dummytest;
+package com.moodanalyser;
 
+import com.moodanalyser.exception.MoodAnalysisException;
+import com.moodanalyser.service.MoodAnalyser;
+import com.moodanalyser.service.MoodAnalyserFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 public class MoodAnalyserTest {
+
     @Test
     public void givenMood_WhenContainsSad_ShouldReturnSAD() throws MoodAnalysisException {
-        MoodAnalyser moodAnalyser = new MoodAnalyser("I am in sad Mood");
+        MoodAnalyser moodAnalyser = new MoodAnalyser("I am in Sad Mood");
         Assert.assertEquals("SAD", moodAnalyser.analyseMood());
     }
 
