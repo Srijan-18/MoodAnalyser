@@ -11,10 +11,20 @@ import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserTest {
     @Test
-    public void givenMoodAnalyserClass_WhenProper_ShouldReturnObject()  {
-        MoodAnalyser moodAnalyser= MoodAnalyserFactory.createMoodAnalyserObject("I am in happy mood");
+    public void givenMoodAnalyserClass_WhenProper_ShouldReturnObject() throws MoodAnalysisException {
+        MoodAnalyser moodAnalyser= MoodAnalyserFactory.createMoodAnalyserObject("com.moodanalyser.service.MoodAnalyser","I am in happy mood");
         Assert.assertEquals(new MoodAnalyser("I am in happy mood"),moodAnalyser);
     }
+
+    @Test
+    public void givenClassName_WhenImproper_ShouldThrowAnError() {
+        try {
+            MoodAnalyser moodAnalyser= MoodAnalyserFactory.createMoodAnalyserObject("com.moodanalyser.service.Mood","I am in happy mood");
+        } catch (MoodAnalysisException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     @Test
     public void givenMood_WhenContainsSad_ShouldReturnSAD() throws MoodAnalysisException {
         MoodAnalyser moodAnalyser = new MoodAnalyser("I am in Sad Mood");
