@@ -33,4 +33,15 @@ public class MoodAnalyser {
                     (MoodAnalysisException.ExceptionType.ENTERED_NULL, "INVALID INPUT : NULL MOOD");
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        MoodAnalyser that = (MoodAnalyser) o;
+        return message.equals(that.message);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.hashCode();
+    }
 }

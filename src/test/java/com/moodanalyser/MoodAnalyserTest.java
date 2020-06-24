@@ -10,7 +10,11 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserTest {
-
+    @Test
+    public void givenMoodAnalyserClass_WhenProper_ShouldReturnObject()  {
+        MoodAnalyser moodAnalyser= MoodAnalyserFactory.createMoodAnalyserObject("I am in happy mood");
+        Assert.assertEquals(new MoodAnalyser("I am in happy mood"),moodAnalyser);
+    }
     @Test
     public void givenMood_WhenContainsSad_ShouldReturnSAD() throws MoodAnalysisException {
         MoodAnalyser moodAnalyser = new MoodAnalyser("I am in Sad Mood");
@@ -30,7 +34,7 @@ public class MoodAnalyserTest {
             moodAnalyser.analyseMood();
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.ExceptionType.ENTERED_NULL, e.type);
-            System.out.print(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -41,7 +45,7 @@ public class MoodAnalyserTest {
             moodAnalyser.analyseMood();
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.ExceptionType.ENTERED_EMPTY, e.type);
-            System.out.print(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }
