@@ -5,8 +5,8 @@ import com.moodanalyser.exception.MoodAnalysisException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-public class MoodAnalyserFactory {
-
+public class MoodAnalyserReflector {
+   static Object moodAnalyserObj;
     public static MoodAnalyser createMoodAnalyser(String... details) throws MoodAnalysisException {
         try {
             Class<?> moodAnalyserClass = Class.forName(details[0]);
@@ -35,5 +35,12 @@ public class MoodAnalyserFactory {
             e.printStackTrace();
         }
         return null;
+    }
+    public static String callAnalyseMoodDefaultConstructor(MoodAnalyser moodAnalyser) throws MoodAnalysisException {
+        try {
+            return moodAnalyser.analyseMood();
+        } catch (MoodAnalysisException e) {
+            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NO_SUCH_METHOD, "Improper Message Call");
+        }
     }
 }

@@ -2,7 +2,7 @@ package com.moodanalyser;
 
 import com.moodanalyser.exception.MoodAnalysisException;
 import com.moodanalyser.service.MoodAnalyser;
-import com.moodanalyser.service.MoodAnalyserFactory;
+import com.moodanalyser.service.MoodAnalyserReflector;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ public class MoodAnalyserTest {
 
     @Test
     public void givenMoodAnalyserClass_WhenProper_ShouldReturnObject() throws MoodAnalysisException {
-        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser
+        MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
                 ("com.moodanalyser.service.MoodAnalyser",  "String","I am in happy mood");
         Assert.assertEquals(new MoodAnalyser("I am in happy mood"), moodAnalyser);
     }
@@ -18,7 +18,7 @@ public class MoodAnalyserTest {
     @Test
     public void givenClassName_WhenImproper_ShouldThrowAnError() {
         try {
-            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser
+            MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
                     ("com.moodanalyser.service.Mood", "String", "I am in happy mood");
         } catch (MoodAnalysisException e) {
             System.out.println(e.getMessage());
@@ -28,17 +28,17 @@ public class MoodAnalyserTest {
     @Test
     public void givenConstructor_WhenImproperParameters_ShouldThrowAnError() {
         try {
-            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser
+            MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
                     ("com.moodanalyser.service.MoodAnalyser", "Integer","I am in happy mood");
         } catch (MoodAnalysisException e) {
             System.out.println(e.getMessage());
         }
     }
     @Test
-    public void givenConstructor_WhenNoParameters_ShouldThrowAnError() {
+    public void givenConstructor_WhenNoParameters_ShouldMakeDefaultConstructor() {
         try {
-            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser
-                    ("com.moodanalyser.service.MoodAnalyser", "String","I am in happy mood");
+            MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
+                    ("com.moodanalyser.service.MoodAnalyser");
         } catch (MoodAnalysisException e) {
             System.out.println(e.getMessage());
         }
