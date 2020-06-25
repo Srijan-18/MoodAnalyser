@@ -6,13 +6,21 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserFactory {
-    public static MoodAnalyser createMoodAnalyserObject(String className,String  message,Class<?> parameters) throws MoodAnalysisException {
+
+    public static MoodAnalyser createMoodAnalyser(String... details) throws MoodAnalysisException {
         try {
-            Class<?> moodAnalyserClass = Class.forName(className);
+            Class<?> moodAnalyserClass = Class.forName(details[0]);
+            if (details.length>1){
+            Class<?> parameters=Class.forName("java.lang."+details[1]);
             Constructor<?> moodAnalyserConstructor = moodAnalyserClass.getConstructor(parameters);
-            moodAnalyserConstructor.setAccessible(true);
-            Object moodAnalyserObj = moodAnalyserConstructor.newInstance(message);
+            Object moodAnalyserObj = moodAnalyserConstructor.newInstance(details[2]);
             return (MoodAnalyser)moodAnalyserObj;
+            }
+            else {
+                Constructor<?> moodAnalyserConstructor = moodAnalyserClass.getConstructor();
+                Object moodAnalyserObj = moodAnalyserConstructor.newInstance();
+                return (MoodAnalyser)moodAnalyserObj;
+            }
         } catch (ClassNotFoundException e) {
             throw new MoodAnalysisException
                     (MoodAnalysisException.ExceptionType.NO_SUCH_CLASS, "ERROR: NO SUCH CLASS FOUND");

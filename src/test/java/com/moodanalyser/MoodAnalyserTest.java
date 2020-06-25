@@ -7,18 +7,19 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MoodAnalyserTest {
+
     @Test
     public void givenMoodAnalyserClass_WhenProper_ShouldReturnObject() throws MoodAnalysisException {
-        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyserObject
-                ("com.moodanalyser.service.MoodAnalyser", "I am in happy mood", String.class);
+        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser
+                ("com.moodanalyser.service.MoodAnalyser",  "String","I am in happy mood");
         Assert.assertEquals(new MoodAnalyser("I am in happy mood"), moodAnalyser);
     }
 
     @Test
     public void givenClassName_WhenImproper_ShouldThrowAnError() {
         try {
-            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyserObject
-                    ("com.moodanalyser.service.Mood", "I am in happy mood", String.class);
+            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser
+                    ("com.moodanalyser.service.Mood", "String", "I am in happy mood");
         } catch (MoodAnalysisException e) {
             System.out.println(e.getMessage());
         }
@@ -27,8 +28,17 @@ public class MoodAnalyserTest {
     @Test
     public void givenConstructor_WhenImproperParameters_ShouldThrowAnError() {
         try {
-            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyserObject
-                    ("com.moodanalyser.service.MoodAnalyser", "I am in happy mood", Integer.class);
+            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser
+                    ("com.moodanalyser.service.MoodAnalyser", "Integer","I am in happy mood");
+        } catch (MoodAnalysisException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    @Test
+    public void givenConstructor_WhenNoParameters_ShouldThrowAnError() {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser
+                    ("com.moodanalyser.service.MoodAnalyser", "String","I am in happy mood");
         } catch (MoodAnalysisException e) {
             System.out.println(e.getMessage());
         }

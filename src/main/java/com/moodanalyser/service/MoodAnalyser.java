@@ -5,6 +5,10 @@ import com.moodanalyser.exception.MoodAnalysisException;
 public class MoodAnalyser {
     private final String message;
 
+    public MoodAnalyser() {
+        message = "";
+    }
+
     /**
      * PARAMETERISED CONSTRUCTOR TO INITIALISE CLASS VARIABLE
      *
@@ -40,8 +44,4 @@ public class MoodAnalyser {
         return message.equals(that.message);
     }
 
-    @Override
-    public int hashCode() {
-        return this.hashCode();
-    }
 }
