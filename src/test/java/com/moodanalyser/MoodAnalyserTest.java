@@ -53,17 +53,31 @@ public class MoodAnalyserTest {
             System.out.println(e.getMessage());
         }
     }
+
     @Test
     public void givenHappyMessage_ShouldChangeMoodDynamically_UsingReflector() {
         try {
             MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
                     ("com.moodanalyser.service.MoodAnalyser");
-            moodAnalyser=MoodAnalyserReflector.setMood(moodAnalyser,"I am in Happy Mood");
+            MoodAnalyserReflector.setMood(moodAnalyser,"message","I am in Happy Mood");
             Assert.assertEquals("HAPPY",MoodAnalyserReflector.callAnalyseMood(moodAnalyser));
         } catch (MoodAnalysisException e) {
             System.out.println(e.getMessage());
         }
     }
+
+    @Test
+    public void givenInvalidFieldName_ShouldReturnError() {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
+                    ("com.moodanalyser.service.MoodAnalyser");
+            MoodAnalyserReflector.setMood(moodAnalyser,"mood","I am in Happy Mood");
+            Assert.assertEquals("HAPPY",MoodAnalyserReflector.callAnalyseMood(moodAnalyser));
+        } catch (MoodAnalysisException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     @Test
     public void givenHappyMessage_WhenImproperMethod_ShouldThrowAnError() {
         try {

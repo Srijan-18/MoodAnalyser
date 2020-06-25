@@ -44,8 +44,18 @@ public class MoodAnalyserReflector {
             throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NO_SUCH_METHOD, "Improper Message Call");
         }
     }
-    public static MoodAnalyser setMood(MoodAnalyser moodAnalyser,String mood) {
-        moodAnalyser.message=mood;
-        return moodAnalyser;
+    public static void setMood(MoodAnalyser moodAnalyser,String fieldName,String fieldValue) throws MoodAnalysisException {
+        try
+        {
+            Field field = moodAnalyser.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(moodAnalyser, fieldValue);
+        } catch (NoSuchFieldException e)
+        {
+            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NO_SUCH_FIELD, "ERROR: NO SUCH FIELD");
+        } catch (IllegalAccessException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
