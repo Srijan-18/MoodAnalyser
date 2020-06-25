@@ -43,6 +43,16 @@ public class MoodAnalyserTest {
             System.out.println(e.getMessage());
         }
     }
+    @Test
+    public void givenMessage_ShouldInvoke_AnalyseMoodMethod_UsingReflector() {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
+                    ("com.moodanalyser.service.MoodAnalyser", "String", "I am in happy mood");
+            Assert.assertEquals("HAPPY",MoodAnalyserReflector.callAnalyseMoodDefaultConstructor(moodAnalyser));
+        } catch (MoodAnalysisException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     @Test
     public void givenMood_WhenContainsSad_ShouldReturnSAD() throws MoodAnalysisException {
