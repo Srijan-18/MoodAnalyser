@@ -48,17 +48,18 @@ public class MoodAnalyserTest {
         try {
             MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
                     ("com.moodanalyser.service.MoodAnalyser", "String", "I am in happy mood");
-            Assert.assertEquals("HAPPY",MoodAnalyserReflector.callAnalyseMoodDefaultConstructor(moodAnalyser));
+            Assert.assertEquals("HAPPY",MoodAnalyserReflector.callAnalyseMood(moodAnalyser));
         } catch (MoodAnalysisException e) {
             System.out.println(e.getMessage());
         }
     }
+
     @Test
     public void givenHappyMessage_WhenImproperMethod_ShouldThrowAnError() {
         try {
             MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
                     ("com.moodanalyser.service.MoodAnalyser", "Integer", "I am in happy mood");
-            Assert.assertEquals("HAPPY",MoodAnalyserReflector.callAnalyseMoodDefaultConstructor(moodAnalyser));
+            Assert.assertEquals("HAPPY",MoodAnalyserReflector.callAnalyseMood(moodAnalyser));
         } catch (MoodAnalysisException e) {
             System.out.println(e.getMessage());
         }

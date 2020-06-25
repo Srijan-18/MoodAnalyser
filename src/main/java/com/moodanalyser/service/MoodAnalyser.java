@@ -3,7 +3,7 @@ package com.moodanalyser.service;
 import com.moodanalyser.exception.MoodAnalysisException;
 
 public class MoodAnalyser {
-    private final String message;
+    String message;
 
     public MoodAnalyser() {
         message = "";
@@ -37,7 +37,6 @@ public class MoodAnalyser {
                     (MoodAnalysisException.ExceptionType.ENTERED_NULL, "INVALID INPUT : NULL MOOD");
         }
     }
-
     @Override
     public boolean equals(Object o) {
         MoodAnalyser that = (MoodAnalyser) o;

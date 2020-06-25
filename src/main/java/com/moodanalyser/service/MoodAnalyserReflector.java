@@ -3,6 +3,7 @@ package com.moodanalyser.service;
 import com.moodanalyser.exception.MoodAnalysisException;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserReflector {
@@ -36,11 +37,15 @@ public class MoodAnalyserReflector {
         }
         return null;
     }
-    public static String callAnalyseMoodDefaultConstructor(MoodAnalyser moodAnalyser) throws MoodAnalysisException {
+    public static String callAnalyseMood(MoodAnalyser moodAnalyser) throws MoodAnalysisException {
         try {
             return moodAnalyser.analyseMood();
         } catch (MoodAnalysisException e) {
             throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NO_SUCH_METHOD, "Improper Message Call");
         }
+    }
+    public static MoodAnalyser setMood(MoodAnalyser moodAnalyser,String mood) {
+        moodAnalyser.message=mood;
+        return moodAnalyser;
     }
 }
