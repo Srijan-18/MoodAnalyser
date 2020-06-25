@@ -45,6 +45,8 @@ public class MoodAnalyserReflector {
         }
     }
     public static void setMood(MoodAnalyser moodAnalyser,String fieldName,String fieldValue) throws MoodAnalysisException {
+        if(fieldValue==null)
+            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_NULL, "ERROR: CAN NOT SET NULL FIELD");
         try
         {
             Field field = moodAnalyser.getClass().getDeclaredField(fieldName);

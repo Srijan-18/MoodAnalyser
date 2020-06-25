@@ -67,6 +67,18 @@ public class MoodAnalyserTest {
     }
 
     @Test
+    public void givenNullMessage_ShouldDisplayError() {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
+                    ("com.moodanalyser.service.MoodAnalyser");
+            MoodAnalyserReflector.setMood(moodAnalyser,"message",null);
+            Assert.assertEquals("HAPPY",MoodAnalyserReflector.callAnalyseMood(moodAnalyser));
+        } catch (MoodAnalysisException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
     public void givenInvalidFieldName_ShouldReturnError() {
         try {
             MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
